@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application solution="org.ncore.Ioc.sln">
+  <Title>org.ncore.Ioc</Title>
+  <Description>A lightweight Inversion of Control library.</Description>
+  <Company>Cleverbox Inc.</Company>
+  <Product>org.ncore.Ioc</Product>
+  <Copyright>Copyright © 2004-2014, Cleverbox Inc. - All rights reserved.</Copyright>
+  <Trademark></Trademark>
+  <Culture></Culture>
+  <Version>
+    <Label>2014 R1</Label>
+    <Major>01</Major>
+    <Minor>00</Minor>
+    <Patch>00</Patch>
+    <Build>75</Build>
+  </Version>
+  <Configuration>
+    <Label>Beta</Label>
+  </Configuration>
+  <Build>
+    <Label>Release</Label>
+  </Build>
+</Application>

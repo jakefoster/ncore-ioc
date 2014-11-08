@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Solution"
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="Publish">
+    <CallTarget Targets="Publish-org_ncore_IoC" />
+  </Target>
+
+  <Target Name="Publish-org_ncore_Ioc" DependsOnTargets="PrepTempPublishDirectory">
+    <PropertyGroup>
+      <targetProject>org.ncore.Ioc</targetProject>
+      <binariesDirectory>$(solutionDirectory)\$(targetProject)\bin\$(configuration)</binariesDirectory>
+      <outputDirectory>$(tempPublishDirectory)\$(targetProject)</outputDirectory>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <librariesSourceFiles Include="$(binariesDirectory)\**\*.*" Exclude="$(binariesDirectory)\**\.svn\**;$(binariesDirectory)\**\*.exe" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(librariesSourceFiles)"
+        DestinationFiles="@(librariesSourceFiles->'$(outputDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <Message Text="- - - - - - - - - - - - - - - - - - " />
+    <Message Text="Mkx.Core Published" />
+    <Message Text="- - - - - - - - - - - - - - - - - - " />
+  </Target>
+
+</Project>
