@@ -81,6 +81,7 @@
     <Compile Include="~AssemblyTasks.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="org.ncore.Ioc.nuspec" />
     <None Include="packages.config" />
     <None Include="_build\PostBuild.cmd" />
     <None Include="_build\PreBuild.cmd" />

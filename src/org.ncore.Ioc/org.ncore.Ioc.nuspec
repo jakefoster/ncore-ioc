@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ncore-ioc</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/jakefoster/ncore-ioc/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/jakefoster/ncore-ioc</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial version.</releaseNotes>
+    <copyright>Copyright © 2004-2014, Cleverbox Inc. - All rights reserved.</copyright>
+    <tags>utility inversionofcontrol ioc dependencyinjection di servicelocator locator object service instantiation</tags>
+    <dependencies>
+        <dependency id="ncore-foundation" version="1.7.5" />
+    </dependencies>
+  </metadata>
+</package>

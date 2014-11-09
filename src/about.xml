@@ -13,11 +13,18 @@
     <Minor>00</Minor>
     <Patch>00</Patch>
     <Build>76</Build>
+    <Printable>1.0.0.76</Printable>
+    <Sortable>01.00.00.00076</Sortable>
   </Version>
   <Configuration>
     <Label>Beta</Label>
+    <Name>Debug</Name>
   </Configuration>
   <Build>
     <Label>Release</Label>
+    <BuildDateTimeUtc>2014-11-09T21:12:54Z</BuildDateTimeUtc>
+    <BuildDateTimeLocal>2014-11-09T13:12:54-08:00</BuildDateTimeLocal>
+    <ShortName>org.ncore.Ioc 1.0.0.76 (Release) «Debug»</ShortName>
+    <FriendlyName>org.ncore.Ioc, version 1.0.0.76, '2014 R1' (Beta, Release) «Debug»</FriendlyName>
   </Build>
 </Application>
