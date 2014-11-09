@@ -9,7 +9,7 @@ namespace org.ncore.Ioc
     public class InjectorLiteral
     {
         public object Value { get; set; }
-        public InjectorLiteral( object value ) 
+        public InjectorLiteral( object value )
         {
             Value = value;
         }

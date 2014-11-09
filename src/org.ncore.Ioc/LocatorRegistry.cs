@@ -33,6 +33,17 @@ namespace org.ncore.Ioc
             }
         }
 
+        public void Update( LocatorType original, LocatorType replacement )
+        {
+            bool success = this.TryUpdate( original.Name, replacement, original );
+            // NOTE: If this fails we *really* want it to pop otherwise our app will likely be totally 
+            //  mis-configured.  In fact, we should really probably have a custom exception type for it. -JF
+            if( !success )
+            {
+                throw new ApplicationException( "Could not update LocatorType '" + original.Name + "' in LocatorRegistry." );
+            }
+        }
+
         private void _initialize()
         {
             lock( this )

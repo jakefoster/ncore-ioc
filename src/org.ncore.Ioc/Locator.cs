@@ -34,6 +34,22 @@ namespace org.ncore.Ioc
             Registry.Add( locatorType );
         }
 
+        public static void Save( LocatorType original, object instance )
+        {
+            if( Registry.ContainsKey( original.Name ) && Registry[ original.Name ].AllowSave == true && Registry[ original.Name ].Instance != null )
+            {
+                LocatorType replacement = new LocatorType()
+                {
+                    Name = original.Name,
+                    Assembly = original.Assembly,
+                    TypeName = original.TypeName,
+                    AllowSave = original.AllowSave,
+                    Instance = instance
+                };
+                Registry.Update( original, replacement );
+            }
+        }
+
         public static void Clear()
         {
             Registry.Clear();
@@ -45,9 +61,9 @@ namespace org.ncore.Ioc
         }
 
         // TODO: Any point to this?  -JF
-        public static void Initialize( Action initializer )
+        public static void Initialize( Action<LocatorRegistry> initializer )
         {
-            initializer();
+            initializer(Registry);
         }
     }
 }

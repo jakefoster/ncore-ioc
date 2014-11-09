@@ -7,6 +7,7 @@
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 //using org.ncore.Ioc;
 
+// TODO: Review and port these over to LocatorTests.  -JF
 //namespace _unittests.org.ncore.Ioc
 //{
 //    /// <summary>

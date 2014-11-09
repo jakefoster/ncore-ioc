@@ -109,5 +109,44 @@ namespace _unittests.org.ncore.Ioc
             Assert.AreEqual( false, widgetType.AllowSave );
             Assert.IsNull( widgetType.Instance );
         }
+
+        // TODO: Get rid of this test. Just spitballing. -JF
+        [TestMethod]
+        public void Locator_initialize()
+        {
+            // ARRANGE
+            // NOTE: The locator registry is populated in app.config so let's wipe it out.  -JF
+            Locator.Clear();
+
+            /*
+            Action<LocatorRegistry> initializer;
+
+            string foo = "bar";
+
+            initializer = registry =>
+            {
+                string moo = foo;
+                Debug.WriteLine( this.GetType().Name );
+                Debug.WriteLine( moo + " = " + registry.Count.ToString() );
+            };
+
+            Locator.Initialize( initializer );
+            */
+
+            string foo = "bar";
+            Locator.Initialize( 
+                registry =>
+                {
+                    string moo = foo;
+                    Debug.WriteLine( this.GetType().Name );
+                    Debug.WriteLine( moo + " = " + registry.Count.ToString() );
+                }
+            );
+
+
+            // ACT
+
+            // ASSERT
+        }
     }
 }

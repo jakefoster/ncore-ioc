@@ -66,21 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Get.cs" />
-    <Compile Include="InjectAttribute.cs" />
     <Compile Include="Injector.cs" />
     <Compile Include="InjectorLiteral.cs" />
     <Compile Include="InjectorType.cs" />
     <Compile Include="InjectorRegistry.cs" />
-    <Compile Include="KernelRegistry.cs" />
-    <Compile Include="KernelType.cs" />
     <Compile Include="Locator.cs" />
     <Compile Include="LocatorConfiguration.cs" />
     <Compile Include="LocatorRegistry.cs" />
     <Compile Include="LocatorType.cs" />
     <Compile Include="New.cs" />
     <Compile Include="Service.cs" />
-    <Compile Include="Kernel.cs" />
-    <Compile Include="KernelConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="~AssemblyNotes.cs" />
     <Compile Include="~AssemblyTasks.cs" />
