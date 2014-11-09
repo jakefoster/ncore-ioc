@@ -13,6 +13,7 @@ namespace org.ncore.Ioc
         // TODO: This is unsafe!  Have to change this over to use ContextStorage type 
         //  of implementation instead.  Either that or figure out how to use the new
         //  ConcurrentDictionary for thread safety.  -JF
+        /*
         [ThreadStatic]
         public static KernelRegistry Registry = new KernelRegistry();
 
@@ -107,5 +108,6 @@ namespace org.ncore.Ioc
             }
             return (T)target;
         }
+         */
     }
 }

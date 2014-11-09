@@ -15,13 +15,13 @@ namespace org.ncore.Ioc
         public Service( Type type )
         {
             // NOTE: Non-obvious behavior here, but basically we're harmonizing
-            //  support for both direct type use and mapping from the Kernel registry.
+            //  support for both direct type use and mapping from the Locator registry.
             //  The way this works is simple: if you pass in a type we first try to
             //  look it up in the registry.  If we find it we use the type mapping 
             //  from the registry.  If not, we just use the type you passed in.  -JF
-            if( Kernel.Registry.Keys.Contains( type.FullName ) )
+            if( Locator.Registry.Keys.Contains( type.FullName ) )
             {
-                KernelType entry = Kernel.Registry[ type.FullName ];
+                LocatorType entry = Locator.Registry[ type.FullName ];
                 _type = Type.GetType( entry.TypeName + ", " + entry.Assembly );
             }
             else
@@ -32,9 +32,9 @@ namespace org.ncore.Ioc
 
         public Service( string name )
         {
-            if( Kernel.Registry.Keys.Contains( name ) )
+            if( Locator.Registry.Keys.Contains( name ) )
             {
-                KernelType entry = Kernel.Registry[ name ];
+                LocatorType entry = Locator.Registry[ name ];
                 _type = Type.GetType( entry.TypeName + ", " + entry.Assembly );
             }
             else

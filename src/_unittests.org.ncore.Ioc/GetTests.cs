@@ -16,9 +16,9 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_dynamic_from_name_works()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
             MyClassA classA = new MyClassA() { Greeter = "Changed" };
-            Kernel.Registry.Add( new KernelType( "MyClass", classA ) );
+            Locator.Add( new LocatorType( "MyClass", classA ) );
 
             // ACT
             dynamic myClass = Get.Instance("MyClass");
@@ -33,8 +33,8 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_dynamic_from_name_works_creates_new()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( "MyClass", typeof( MyClassA ) ) { AllowSave = true } );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( "MyClass", typeof( MyClassA ) ) { AllowSave = true } );
 
             // ACT
             dynamic myClass = Get.Instance( "MyClass", true );
@@ -42,16 +42,16 @@ namespace _unittests.org.ncore.Ioc
 
             // ASSERT
             Assert.AreEqual( "Hello Uni from MyClassA", greeting );
-            Assert.AreSame( Kernel.Registry["MyClass"].Instance, myClass );
+            Assert.AreSame( Locator.Registry["MyClass"].Instance, myClass );
         }
 
         [TestMethod]
         public void Instance_dynamic_from_type_works()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
             MyClassA classA = new MyClassA() { Greeter = "Changed" };
-            Kernel.Registry.Add( new KernelType( typeof(IMyClass), classA ) );
+            Locator.Add( new LocatorType( typeof(IMyClass), classA ) );
 
             // ACT
             dynamic myClass = Get.Instance( typeof( IMyClass ) );
@@ -66,8 +66,8 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_dynamic_from_type_works_creates_new()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
 
             // ACT
             dynamic myClass = Get.Instance( typeof( IMyClass ), true );
@@ -75,16 +75,16 @@ namespace _unittests.org.ncore.Ioc
 
             // ASSERT
             Assert.AreEqual( "Hello Uni from MyClassA", greeting );
-            Assert.AreSame( Kernel.Registry[typeof( IMyClass ).FullName].Instance, myClass );
+            Assert.AreSame( Locator.Registry[typeof( IMyClass ).FullName].Instance, myClass );
         }
 
         [TestMethod]
         public void Instance_typed_from_name_works()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
             MyClassA classA = new MyClassA() { Greeter = "Changed" };
-            Kernel.Registry.Add( new KernelType( "MyClass", classA ) );
+            Locator.Add( new LocatorType( "MyClass", classA ) );
 
             // ACT
             IMyClass myClass = Get.Instance( "MyClass" );
@@ -99,8 +99,8 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_typed_from_name_works_creates_new()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( "MyClass", typeof( MyClassA ) ) { AllowSave = true } );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( "MyClass", typeof( MyClassA ) ) { AllowSave = true } );
 
             // ACT
             IMyClass myClass = Get.Instance( "MyClass", true );
@@ -108,16 +108,16 @@ namespace _unittests.org.ncore.Ioc
 
             // ASSERT
             Assert.AreEqual( "Hello Uni from MyClassA", greeting );
-            Assert.AreSame( Kernel.Registry["MyClass"].Instance, myClass );
+            Assert.AreSame( Locator.Registry["MyClass"].Instance, myClass );
         }
 
         [TestMethod]
         public void Instance_typed_from_type_works()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
             MyClassA classA = new MyClassA() { Greeter = "Changed" };
-            Kernel.Registry.Add( new KernelType( typeof(IMyClass), classA ) );
+            Locator.Add( new LocatorType( typeof(IMyClass), classA ) );
 
             // ACT
             IMyClass myClass = Get.Instance( typeof(IMyClass) );
@@ -132,8 +132,8 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_typed_from_type_works_creates_new()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
 
             // ACT
             IMyClass myClass = Get.Instance( typeof( IMyClass ), true );
@@ -141,7 +141,7 @@ namespace _unittests.org.ncore.Ioc
 
             // ASSERT
             Assert.AreEqual( "Hello Uni from MyClassA", greeting );
-            Assert.AreSame( Kernel.Registry[typeof(IMyClass).FullName].Instance, myClass );
+            Assert.AreSame( Locator.Registry[typeof(IMyClass).FullName].Instance, myClass );
         }
 
         [TestMethod]
@@ -149,7 +149,7 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_pops_when_not_in_registry()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
 
             // ACT
             IMyClass myClass = Get.Instance( typeof( IMyClass ) );
@@ -163,8 +163,8 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_pops_when_registry_instance_empty_and_allowCreate_is_false()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( IMyClass ), typeof( MyClassA ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) );
 
             // ACT
             IMyClass myClass = Get.Instance( typeof( IMyClass ) );
@@ -178,8 +178,8 @@ namespace _unittests.org.ncore.Ioc
         public void Instance_pops_when_registry_instance_empty_and_allowSave_is_false_even_though_allowCreate_is_true()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = false } );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = false } );
 
             // ACT
             IMyClass myClass = Get.Instance( typeof( IMyClass ), true );

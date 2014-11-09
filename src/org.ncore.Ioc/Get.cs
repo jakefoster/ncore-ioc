@@ -35,24 +35,24 @@ namespace org.ncore.Ioc
         private static object _getInstance( string name, bool allowCreate = false )
         {
             object instance = null;
-            if( Kernel.Registry.Keys.Contains( name ) && Kernel.Registry[ name ].Instance != null )
+            if( Locator.Registry.Keys.Contains( name ) && Locator.Registry[ name ].Instance != null )
             {
-                instance = Kernel.Registry[ name ].Instance;
+                instance = Locator.Registry[ name ].Instance;
             }
-            else if( !Kernel.Registry.Keys.Contains( name ) )
+            else if( !Locator.Registry.Keys.Contains( name ) )
             {
                 throw new ApplicationException( "The specified entry in the KernalRegistry does not exist." );
             }
             else
             {
-                if( !allowCreate || !Kernel.Registry[ name ].AllowSave )
+                if( !allowCreate || !Locator.Registry[ name ].AllowSave )
                 {
                     throw new ApplicationException( "The specified entry in the KernalRegistry does not does not allow a saved instance or does not have one." );
                 }
                 else
                 {
                     instance = New.Instance( name, null );
-                    Kernel.Registry[ name ].Instance = instance;
+                    Locator.Registry[ name ].Instance = instance;
                 }
             }
             return instance;

@@ -54,6 +54,7 @@
     <Compile Include="InjectorTests.cs" />
     <Compile Include="ISampleInterfaceA.cs" />
     <Compile Include="KernelTests.cs" />
+    <Compile Include="LocatorTests.cs" />
     <Compile Include="SampleApp\Interfaces\IWidget.cs" />
     <Compile Include="SampleApp\Interfaces\IWidgetList.cs" />
     <Compile Include="SampleApp\Interfaces\IWidgetService.cs" />

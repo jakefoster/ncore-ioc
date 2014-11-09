@@ -66,7 +66,8 @@ namespace _unittests.org.ncore.Ioc
         public void New_Instance_constructor_and_property_injection_works()
         {
             // ARRANGE
-            Kernel.Registry.Add( new KernelType( typeof( Foo ), typeof( Foo ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( Foo ), typeof( Foo ) ) );
 
             // ACT
             Injector injector = new Injector()
@@ -94,11 +95,11 @@ namespace _unittests.org.ncore.Ioc
         public void Kernel_constructor_and_property_injection_works()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( Foo ), typeof( Foo ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( Foo ), typeof( Foo ) ) );
 
             // ACT
-            Foo foo = Kernel.CreateObject<Foo>( new object[] { new Bar() { What = "Yow!" }, 2, "For sure!!", "Hot damn!" } );
+            Foo foo = New.Instance<Foo>( null, new object[] { new Bar() { What = "Yow!" }, 2, "For sure!!", "Hot damn!" } );
 
             // ASSERT
             Assert.AreEqual( "Yow!", foo.TheBar.What );
@@ -110,8 +111,8 @@ namespace _unittests.org.ncore.Ioc
         [TestMethod]
         public void Works_Expository()
         {
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( Fighter ), typeof( Samurai ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( Fighter ), typeof( Samurai ) ) );
 
             Injector injector = new Injector( new InjectorRegistry{
                 { typeof(IThrowableWeapon), typeof(ThrowingStar) },
@@ -137,9 +138,9 @@ namespace _unittests.org.ncore.Ioc
         [TestMethod]
         public void Works_dynamic_expository()
         {
-            Kernel.Registry.Reset();
-            //Kernel.Registry.Add( new KernelType( "Fighter", typeof( Samurai ) ) );
-            Kernel.Registry.Add( new KernelType( typeof( Fighter ), typeof( Samurai ) ) );
+            Locator.Registry.Clear();
+            //Locator.Add( new LocatorType( "Fighter", typeof( Samurai ) ) );
+            Locator.Add( new LocatorType( typeof( Fighter ), typeof( Samurai ) ) );
 
             Injector injector = new Injector( new InjectorRegistry{
                 { typeof(IThrowableWeapon), typeof(ThrowingStar) },
@@ -166,8 +167,8 @@ namespace _unittests.org.ncore.Ioc
         [TestMethod]
         public void Works_Ninja_Expository()
         {
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( Fighter ), typeof( Ninja ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( Fighter ), typeof( Ninja ) ) );
 
             Injector injector = new Injector( new InjectorRegistry{
                 { typeof(IThrowableWeapon), typeof(GlassDust) },
@@ -190,7 +191,7 @@ namespace _unittests.org.ncore.Ioc
         [TestMethod]
         public void New_on_instance_with_dynamic_field()
         {
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
 
             Injector injector = new Injector( new InjectorRegistry{
                 { "_secretPower", typeof(TemporaryBlindness) }
@@ -203,7 +204,7 @@ namespace _unittests.org.ncore.Ioc
         [TestMethod]
         public void New_on_instance_with_dynamic_property()
         {
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
 
             Injector injector = new Injector( new InjectorRegistry{
                 { "SpecialPower", typeof(TemporaryBlindness) }

@@ -66,9 +66,9 @@ namespace org.ncore.Ioc
                     injectable = _getOrCreate( property.PropertyType.FullName );
                     Debug.WriteLine( "---> Retrieved instance from InjectorRegistry" );
                 }
-                else if( SearchKernel && Kernel.Registry.Keys.Contains( property.Name ) )
+                else if( SearchKernel && Locator.Registry.Keys.Contains( property.Name ) )
                 {
-                    injectable = Kernel.GetOrCreateObject<object>( property.Name );
+                    injectable = New.Instance<object>( property.Name, null );
                     Debug.WriteLine( "---> Retrieved instance from KernelRegistry" );
                 }
 
@@ -104,9 +104,9 @@ namespace org.ncore.Ioc
                     injectable = _getOrCreate( field.FieldType.FullName );
                     Debug.WriteLine( "---> Retrieved instance from InjectorRegistry" );
                 }
-                else if( SearchKernel && Kernel.Registry.Keys.Contains( field.Name ) )
+                else if( SearchKernel && Locator.Registry.Keys.Contains( field.Name ) )
                 {
-                    injectable = Kernel.GetOrCreateObject<object>( field.Name );
+                    injectable = New.Instance<object>( field.Name, null );
                     Debug.WriteLine( "---> Retrieved instance from KernelRegistry" );
                 }
 

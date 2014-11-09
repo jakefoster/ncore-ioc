@@ -35,9 +35,13 @@ namespace org.ncore.Ioc
             }
 
             dynamic instance;
-            if( Kernel.Registry.Keys.Contains( type.FullName ) )
+            if( Locator.Registry.Keys.Contains( type.FullName ) )
             {
-                instance = Kernel.CreateObject<dynamic>( type.FullName, injector.ConstructorParams );
+                // TODO: Highly duplicated code here. Refactor.  -JF
+                LocatorType locatorType = Locator.Registry[ type.FullName ];
+                ObjectHandle handle = Activator.CreateInstance( locatorType.Assembly, locatorType.TypeName,
+                                                false, 0, null, injector.ConstructorParams, null, null );
+                instance = (dynamic)handle.Unwrap();
             }
             else
             {
@@ -72,9 +76,13 @@ namespace org.ncore.Ioc
             }
 
             dynamic instance;
-            if( Kernel.Registry.Keys.Contains( name ) )
+            if( Locator.Registry.Keys.Contains( name ) )
             {
-                instance = Kernel.CreateObject<dynamic>( name, injector.ConstructorParams );
+                // TODO: Highly duplicated code here. Refactor.  -JF
+                LocatorType locatorType = Locator.Registry[ name ];
+                ObjectHandle handle = Activator.CreateInstance( locatorType.Assembly, locatorType.TypeName,
+                                                false, 0, null, injector.ConstructorParams, null, null );
+                instance = (dynamic)handle.Unwrap();
             }
             else
             {
@@ -90,11 +98,11 @@ namespace org.ncore.Ioc
             {
                 ConstructorParams = constructorParams
             };
-            if( memberRegistry.GetType() == typeof( InjectorRegistry ) )
+            if( memberRegistry != null && memberRegistry.GetType() == typeof( InjectorRegistry ) )
             {
                 injector.MemberRegistry = memberRegistry;
             }
-            else
+            else if( memberRegistry != null )
             {
                 injector.MemberRegistry = new InjectorRegistry( memberRegistry );
             } 
@@ -109,9 +117,13 @@ namespace org.ncore.Ioc
             }
 
             T instance;
-            if( Kernel.Registry.Keys.Contains( typeof( T ).FullName ) )
+            if( Locator.Registry.Keys.Contains( typeof( T ).FullName ) )
             {
-                instance = Kernel.CreateObject<T>( injector.ConstructorParams );
+                // TODO: Highly duplicated code here. Refactor.  -JF
+                LocatorType locatorType = Locator.Registry[ typeof( T ).FullName ];
+                ObjectHandle handle = Activator.CreateInstance( locatorType.Assembly, locatorType.TypeName,
+                                                false, 0, null, injector.ConstructorParams, null, null );
+                instance = (T)handle.Unwrap();
             }
             else
             {
@@ -146,9 +158,13 @@ namespace org.ncore.Ioc
             }
 
             T instance;
-            if( Kernel.Registry.Keys.Contains( name ) )
+            if( Locator.Registry.Keys.Contains( name ) )
             {
-                instance = Kernel.CreateObject<dynamic>( name, injector.ConstructorParams );
+                // TODO: Highly duplicated code here. Refactor.  -JF
+                LocatorType locatorType = Locator.Registry[ name ];
+                ObjectHandle handle = Activator.CreateInstance( locatorType.Assembly, locatorType.TypeName,
+                                                false, 0, null, injector.ConstructorParams, null, null );
+                instance = (T)handle.Unwrap();
             }
             else
             {

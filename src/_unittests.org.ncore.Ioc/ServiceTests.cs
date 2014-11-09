@@ -66,8 +66,8 @@ namespace _unittests.org.ncore.Ioc
         public void New_from_name_works()
         {
             // REGISTER OUR TYPE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( "MyService", typeof( MockSampleClassC ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( "MyService", typeof( MockSampleClassC ) ) );
 
             dynamic myService = new Service( "MyService" );
             string greeting = myService.Greet( "Hello" );
@@ -86,7 +86,7 @@ namespace _unittests.org.ncore.Ioc
         public void New_from_name_throws_not_in_registry()
         {
             // REGISTER OUR TYPE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
 
             dynamic myService = new Service( "MyService" );
         }
@@ -95,8 +95,8 @@ namespace _unittests.org.ncore.Ioc
         public void New_from_type_mapped_in_registry_works()
         {
             // REGISTER OUR TYPE
-            Kernel.Registry.Reset();
-            Kernel.Registry.Add( new KernelType( typeof( SampleClassC ), typeof( MockSampleClassC ) ) );
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( SampleClassC ), typeof( MockSampleClassC ) ) );
 
             // HMM. Something is confusing here. Are we trying to fully use the kernel registry or not?
             dynamic myService = new Service( typeof( SampleClassC ) );
@@ -109,7 +109,7 @@ namespace _unittests.org.ncore.Ioc
         public void New_from_type_not_mapped_in_registry_works()
         {
             // ARRANGE
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
 
             // ACT
             dynamic myService = new Service( typeof( SampleClassC ) );

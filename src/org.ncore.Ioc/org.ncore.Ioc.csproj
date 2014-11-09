@@ -73,6 +73,10 @@
     <Compile Include="InjectorRegistry.cs" />
     <Compile Include="KernelRegistry.cs" />
     <Compile Include="KernelType.cs" />
+    <Compile Include="Locator.cs" />
+    <Compile Include="LocatorConfiguration.cs" />
+    <Compile Include="LocatorRegistry.cs" />
+    <Compile Include="LocatorType.cs" />
     <Compile Include="New.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Kernel.cs" />

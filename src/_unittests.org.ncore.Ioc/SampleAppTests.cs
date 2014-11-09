@@ -60,7 +60,7 @@ namespace _unittests.org.ncore.Ioc
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            Kernel.Registry.Reset();
+            Locator.Registry.Clear();
         }
 
         // Use TestCleanup to run code after each test has run
@@ -84,8 +84,8 @@ namespace _unittests.org.ncore.Ioc
 
             // NOTE: This is essentially exactly what the KernelConfiguration does when
             //  it bootstraps from app.config.  -JF
-            Kernel.Registry.Add(
-                new KernelType( "WidgetService",
+            Locator.Add(
+                new LocatorType( "WidgetService",
                     "_unittests.org.ncore.Ioc",
                     "_unittests.org.ncore.Ioc.SampleApp.RealImp.WidgetService" ) );
 
@@ -143,13 +143,13 @@ namespace _unittests.org.ncore.Ioc
             //  to add a couple more types to our service locator (again, this can
             //  be done programmatically at runtime OR in app.config at deploy-time.
 
-            Kernel.Registry.Add(
-                new KernelType( "WidgetStore",
+            Locator.Add(
+                new LocatorType( "WidgetStore",
                     "_unittests.org.ncore.Ioc",
                     "_unittests.org.ncore.Ioc.SampleApp.RealImp.WidgetStore" ) );
 
-            Kernel.Registry.Add(
-                new KernelType( "_unittests.org.ncore.Ioc.SampleApp.Interfaces.IWidget",
+            Locator.Add(
+                new LocatorType( "_unittests.org.ncore.Ioc.SampleApp.Interfaces.IWidget",
                     "_unittests.org.ncore.Ioc",
                     "_unittests.org.ncore.Ioc.SampleApp.RealImp.Widget" ) );
 
