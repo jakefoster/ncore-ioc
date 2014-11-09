@@ -8,7 +8,7 @@ To Install
 
 Install from NuGet:  
 
-`PM> Install-Package Newtonsoft.Json`
+`PM> Install-Package ncore-ioc`
 
 Some Important Notes
 --------------------
