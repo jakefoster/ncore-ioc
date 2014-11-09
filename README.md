@@ -3,6 +3,16 @@ ncore-ioc
 
 A lean little inversion control of library providing service location and dependency injection supporting both controller and property injection.
 
+To Install
+----------
+
+Install from NuGet:  
+
+`PM> Install-Package ncore-ioc`
+
+Some Important Notes
+--------------------
+
 Note #1: This library is still in its earyly stages and may change slightly as the patterns demand refinement.  
 
 Note #2: There are a decent number of unit tests but, frankly, they're all over the place and need a lot of work.  There are also a bunch of tests that are inspired by the Ninject samples and that are pretty corny.  Still, they illurstrate the concepts.  Anyway, the unit tests need a lot of cleanup.
