@@ -82,7 +82,7 @@ namespace _unittests.org.ncore.Ioc
             //  DEMOING IOC PATTERNS USING THE SIMPLEST (BUT NOT HORRIBLY OVER-SIMPLIFIED) 
             //  SAMPLE IMPLEMENTATION.  OK.  NOW THAT WE HAVE THAT OUT OF THE WAY...
 
-            // NOTE: This is essentially exactly what the KernelConfiguration does when
+            // NOTE: This is essentially exactly what the LocatorConfiguration does when
             //  it bootstraps from app.config.  -JF
             Locator.Add(
                 new LocatorType( "WidgetService",
@@ -216,53 +216,6 @@ namespace _unittests.org.ncore.Ioc
 
            Debug.WriteLine( "widget5.Id: " + widget5.Id );
            Assert.AreEqual( 5, widget5.Id );
-
-
-            // TODO: Imporant next-step refactor here is to change the Kernel to 
-            //  use New.Instance(useKernel=false) for it's object creation so that
-            //  (interestingly) the Kernal uses New.Instance() and New.Instance()
-            //  can optionally use the Kernal.  Right now there's total duplication
-            //  of object creation responsibilities here.  That code should be
-            //  solely the responsibility of New.Instance() [though as a side
-            //  note the Kernal should NEVER call New.Instance(useKernel=true)
-            //  because that would just be weird, right?  And looking at the 
-            //  code I think the Kernel becomes a lot simpler and is really just
-            //  about service location.  Though maybe we enrich it by somehow 
-            //  supporting constructor and property injection from the registry
-            //  (though how we would do that from a config file is a puzzle)
-            //  and New.Instance() would need to a new override that accepts
-            //  Assembly and TypeName (like the kernel) for direct creation of a
-            //  type.  I don't know.  I guess I'm confusing myself here... -JF
-            // UPDATE: Yeah - this thinking is probably messed up.  There's 
-            //  definitely confusion about the roles of the various objects in
-            //  this library and how they should and shouldn't be used that really
-            //  need to be sorted out.  Right now my goal is to ephasize the New
-            //  object and see if there's really an ongoing need for the Kernel
-            //  to be about more than service location (and shared instance storage
-            //  though frankly I'm a little wigged out by that too...)  Anyway it 
-            //  seems entirely possible that you could create a config file structure
-            //  that incorporated the injection of constructor and/or member params
-            //  on object creation such that Kernel.GetOrCreate() would still make
-            //  some sense (and maybe even be uniquely useful) because the creation
-            //  of both shared and unique instances could also include config-file
-            //  file driven pre-configuration of instance, but lazily (on-demand)
-            //  I just don't know how useful this really is so I'm not particularly
-            //  keen on pushing too hard on it until I'm more confident that there's
-            //  a purpose to it and I'm not just muddying the waters further.  It's
-            //  worth pointing out that I *may* very well realize that the confusion
-            //  is simply because Kernel should actually be folded into New entirely
-            //  or that it should be divided up between New and some other classes,
-            //  possibly a pure "Locator" for the service location and KernelRegistry
-            //  stuff, and then a new Get class that is semantically similar to the 
-            //  New class (e.g. Get.Instance<T>() ) except that it only retrieves 
-            //  shared instances from the Locator's registry.  The possible exception
-            //  being that it could also have the GetOrCreate() behavior, in which 
-            //  case it would be most sensibe to call New.Instance internally anyway.
-            //  So maybe something like:
-            //      Get.OrCreate(), 
-            //  or 
-            //      Get.Instance( bool allowCreate)
-            //  Anyway, very confusing.  -JF
         }
     }
 }

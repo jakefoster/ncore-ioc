@@ -83,6 +83,7 @@ namespace _unittests.org.ncore.Ioc
             //Foo foo = New.Instance<Foo>(
             //    new InjectorRegistry { { "SomethingElse", "I got injected!" } },
             //    new object[] { new Bar() { What = "Yow!" }, 2, "For sure!!", "Hot damn!" } );
+            // UPDATE: There's an even nicer shortcut to creating the 
 
             // ASSERT
             Assert.AreEqual( "I got injected!", foo.SomethingElse );
@@ -92,7 +93,7 @@ namespace _unittests.org.ncore.Ioc
         }
 
         [TestMethod]
-        public void Kernel_constructor_and_property_injection_works()
+        public void New_Instance_constructor_injection_works_no_property_injection()
         {
             // ARRANGE
             Locator.Registry.Clear();

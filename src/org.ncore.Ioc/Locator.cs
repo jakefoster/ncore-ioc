@@ -59,11 +59,5 @@ namespace org.ncore.Ioc
         {
             Registry = new LocatorRegistry();
         }
-
-        // TODO: Any point to this?  -JF
-        public static void Initialize( Action<LocatorRegistry> initializer )
-        {
-            initializer(Registry);
-        }
     }
 }

@@ -14,7 +14,7 @@ namespace org.ncore.Ioc
 {
     public class Injector
     {
-        public bool SearchKernel { get; set; }
+        public bool UseLocator { get; set; }
         public InjectorRegistry MemberRegistry { get; set; }        
         public object[] ConstructorParams{get;set;}
 
@@ -22,25 +22,25 @@ namespace org.ncore.Ioc
         {
             MemberRegistry = new InjectorRegistry();
             ConstructorParams = null;
-            SearchKernel = true;
+            UseLocator = true;
         }
 
-        public Injector( bool searchKernel, InjectorRegistry memberRegistry = null, object[] constructorParams = null )
+        public Injector( bool useLocator, InjectorRegistry memberRegistry = null, object[] constructorParams = null )
         {
             MemberRegistry = new InjectorRegistry();
-            SearchKernel = searchKernel;
+            UseLocator = useLocator;
         }
 
         public Injector( InjectorRegistry registry )
         {
             MemberRegistry = registry;
-            SearchKernel = true;
+            UseLocator = true;
         }
 
-        public Injector( InjectorRegistry registry, bool searchKernel )
+        public Injector( InjectorRegistry registry, bool useLocator )
         {
             MemberRegistry = registry;
-            SearchKernel = searchKernel;
+            UseLocator = useLocator;
         }
                 
         public object Inject( object instance )
@@ -66,10 +66,10 @@ namespace org.ncore.Ioc
                     injectable = _getOrCreate( property.PropertyType.FullName );
                     Debug.WriteLine( "---> Retrieved instance from InjectorRegistry" );
                 }
-                else if( SearchKernel && Locator.Registry.Keys.Contains( property.Name ) )
+                else if( UseLocator && Locator.Registry.Keys.Contains( property.Name ) )
                 {
                     injectable = New.Instance<object>( property.Name, null );
-                    Debug.WriteLine( "---> Retrieved instance from KernelRegistry" );
+                    Debug.WriteLine( "---> Retrieved instance from LocatorRegistry" );
                 }
 
                 if( injectable != null )
@@ -104,10 +104,10 @@ namespace org.ncore.Ioc
                     injectable = _getOrCreate( field.FieldType.FullName );
                     Debug.WriteLine( "---> Retrieved instance from InjectorRegistry" );
                 }
-                else if( SearchKernel && Locator.Registry.Keys.Contains( field.Name ) )
+                else if( UseLocator && Locator.Registry.Keys.Contains( field.Name ) )
                 {
                     injectable = New.Instance<object>( field.Name, null );
-                    Debug.WriteLine( "---> Retrieved instance from KernelRegistry" );
+                    Debug.WriteLine( "---> Retrieved instance from LocatorRegistry" );
                 }
 
                 if( injectable != null )
