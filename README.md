@@ -6,7 +6,8 @@ A lean little inversion control of library providing service location and depend
 To Install
 ----------
 
-Install from NuGet:
+Install from NuGet:  
+
 `PM> Install-Package Newtonsoft.Json`
 
 Some Important Notes
