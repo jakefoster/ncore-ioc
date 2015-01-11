@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial version.</releaseNotes>
-    <copyright>Copyright © 2004-2014, Cleverbox Inc. - All rights reserved.</copyright>
+    <copyright>Copyright © 2004-2015, Cleverbox Inc. - All rights reserved.</copyright>
     <tags>utility inversionofcontrol ioc dependencyinjection di servicelocator locator object service instantiation</tags>
     <dependencies>
         <dependency id="ncore-foundation" version="1.7.5" />

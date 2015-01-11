@@ -35,8 +35,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "org.ncore.ServicedApi" )]
-[assembly: AssemblyDescription( "A library supporting the implementation of serviced APIs." )]
+[assembly: AssemblyTitle( "org.ncore.Ioc" )]
+[assembly: AssemblyDescription( "A simple Inversion of Control library for performing service location and dependency injection." )]
 [assembly: AssemblyConfiguration( "Debug" )]
 [assembly: AssemblyCompany( "Cleverbox Inc." )]
 [assembly: AssemblyProduct( "org.ncore.Ioc" )]
@@ -62,5 +62,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion( "1.0.0.77" )]
-[assembly: AssemblyFileVersion( "1.0.0.77" )]
+[assembly: AssemblyVersion( "1.0.0.78" )]
+[assembly: AssemblyFileVersion( "1.0.0.78" )]
