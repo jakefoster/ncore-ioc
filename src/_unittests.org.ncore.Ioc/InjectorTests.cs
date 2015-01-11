@@ -100,7 +100,7 @@ namespace _unittests.org.ncore.Ioc
             Locator.Add( new LocatorType( typeof( Foo ), typeof( Foo ) ) );
 
             // ACT
-            Foo foo = New.Instance<Foo>( null, new object[] { new Bar() { What = "Yow!" }, 2, "For sure!!", "Hot damn!" } );
+            Foo foo = New.Instance<Foo>( null, new object[] { new Bar() { What = "Yow!" }, 2, "For sure!!", "Hot damn!" }, false );
 
             // ASSERT
             Assert.AreEqual( "Yow!", foo.TheBar.What );
@@ -140,9 +140,8 @@ namespace _unittests.org.ncore.Ioc
         public void Works_dynamic_expository()
         {
             Locator.Registry.Clear();
-            //Locator.Add( new LocatorType( "Fighter", typeof( Samurai ) ) );
-            Locator.Add( new LocatorType( typeof( Fighter ), typeof( Samurai ) ) );
-
+            Locator.Add( new LocatorType( "Fighter", typeof( Samurai ) ) );
+            
             Injector injector = new Injector( new InjectorRegistry{
                 { typeof(IThrowableWeapon), typeof(ThrowingStar) },
                 { "Weapon", new Naginata(2) },
@@ -151,8 +150,7 @@ namespace _unittests.org.ncore.Ioc
                 { "SpecialPower", typeof(TemporaryBlindness) }
             } );
 
-            //dynamic myInstance = New.Instance( "Fighter", injector );
-            dynamic myFighter = New.Instance( typeof( Fighter ), injector );
+            dynamic myFighter = New.Instance( "Fighter", injector );
             Assert.AreEqual( typeof( Samurai ), myFighter.GetType() );
             Assert.AreEqual( "Whizzz, Thud!", myFighter.ThrowableWeapon.Throw() );
             Assert.AreEqual( "Stab! Stab!", myFighter.Weapon.Use() );

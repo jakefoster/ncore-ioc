@@ -51,10 +51,10 @@ namespace _unittests.org.ncore.Ioc
             // ARRANGE
             Locator.Registry.Clear();
             MyClassA classA = new MyClassA() { Greeter = "Changed" };
-            Locator.Add( new LocatorType( typeof(IMyClass), classA ) );
+            Locator.Add( new LocatorType( "MyClass", classA ) );
 
             // ACT
-            dynamic myClass = Get.Instance( typeof( IMyClass ) );
+            dynamic myClass = Get.Instance( "MyClass" );
             string greeting = myClass.Greet( "Uni" );
 
             // ASSERT
@@ -67,15 +67,15 @@ namespace _unittests.org.ncore.Ioc
         {
             // ARRANGE
             Locator.Registry.Clear();
-            Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
+            Locator.Add( new LocatorType( "MyClass", typeof( MyClassA ) ) { AllowSave = true } );
 
             // ACT
-            dynamic myClass = Get.Instance( typeof( IMyClass ), true );
+            dynamic myClass = Get.Instance( "MyClass", true );
             string greeting = myClass.Greet( "Uni" );
 
             // ASSERT
             Assert.AreEqual( "Hello Uni from MyClassA", greeting );
-            Assert.AreSame( Locator.Registry[typeof( IMyClass ).FullName].Instance, myClass );
+            Assert.AreSame( Locator.Registry[ "MyClass" ].Instance, myClass );
         }
 
         [TestMethod]
@@ -111,38 +111,38 @@ namespace _unittests.org.ncore.Ioc
             Assert.AreSame( Locator.Registry["MyClass"].Instance, myClass );
         }
 
-        [TestMethod]
-        public void Instance_typed_from_type_works()
-        {
-            // ARRANGE
-            Locator.Registry.Clear();
-            MyClassA classA = new MyClassA() { Greeter = "Changed" };
-            Locator.Add( new LocatorType( typeof(IMyClass), classA ) );
+        //[TestMethod]
+        //public void Instance_typed_from_type_works()
+        //{
+        //    // ARRANGE
+        //    Locator.Registry.Clear();
+        //    MyClassA classA = new MyClassA() { Greeter = "Changed" };
+        //    Locator.Add( new LocatorType( typeof(IMyClass), classA ) );
 
-            // ACT
-            IMyClass myClass = Get.Instance( typeof(IMyClass) );
-            string greeting = myClass.Greet( "Uni" );
+        //    // ACT
+        //    IMyClass myClass = Get.Instance( typeof(IMyClass) );
+        //    string greeting = myClass.Greet( "Uni" );
 
-            // ASSERT
-            Assert.AreEqual( "Hello Uni from Changed", greeting );
-            Assert.AreSame( classA, myClass );
-        }
+        //    // ASSERT
+        //    Assert.AreEqual( "Hello Uni from Changed", greeting );
+        //    Assert.AreSame( classA, myClass );
+        //}
 
-        [TestMethod]
-        public void Instance_typed_from_type_works_creates_new()
-        {
-            // ARRANGE
-            Locator.Registry.Clear();
-            Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
+        //[TestMethod]
+        //public void Instance_typed_from_type_works_creates_new()
+        //{
+        //    // ARRANGE
+        //    Locator.Registry.Clear();
+        //    Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = true } );
 
-            // ACT
-            IMyClass myClass = Get.Instance( typeof( IMyClass ), true );
-            string greeting = myClass.Greet( "Uni" );
+        //    // ACT
+        //    IMyClass myClass = Get.Instance( typeof( IMyClass ), true );
+        //    string greeting = myClass.Greet( "Uni" );
 
-            // ASSERT
-            Assert.AreEqual( "Hello Uni from MyClassA", greeting );
-            Assert.AreSame( Locator.Registry[typeof(IMyClass).FullName].Instance, myClass );
-        }
+        //    // ASSERT
+        //    Assert.AreEqual( "Hello Uni from MyClassA", greeting );
+        //    Assert.AreSame( Locator.Registry[typeof(IMyClass).FullName].Instance, myClass );
+        //}
 
         [TestMethod]
         [ExpectedException( typeof( ApplicationException ), "The specified entry in the KernalRegistry does not exist." )]
@@ -152,7 +152,7 @@ namespace _unittests.org.ncore.Ioc
             Locator.Registry.Clear();
 
             // ACT
-            IMyClass myClass = Get.Instance( typeof( IMyClass ) );
+            IMyClass myClass = Get.Instance<IMyClass>();
 
             // ASSERT
         }
@@ -167,7 +167,7 @@ namespace _unittests.org.ncore.Ioc
             Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) );
 
             // ACT
-            IMyClass myClass = Get.Instance( typeof( IMyClass ) );
+            IMyClass myClass = Get.Instance<IMyClass>();
 
             // ASSERT
         }
@@ -182,7 +182,7 @@ namespace _unittests.org.ncore.Ioc
             Locator.Add( new LocatorType( typeof( IMyClass ), typeof( MyClassA ) ) { AllowSave = false } );
 
             // ACT
-            IMyClass myClass = Get.Instance( typeof( IMyClass ), true );
+            IMyClass myClass = Get.Instance<IMyClass>();
 
             // ASSERT
         }

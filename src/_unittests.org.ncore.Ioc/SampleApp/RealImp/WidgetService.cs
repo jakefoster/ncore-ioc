@@ -29,7 +29,7 @@ namespace _unittests.org.ncore.Ioc.SampleApp.RealImp
 
         public static IWidget CreateFromInterface( IWidget widget )
         {
-            dynamic WidgetStore = New.Service( "WidgetStore" );
+            dynamic WidgetStore = Dyno.New( "WidgetStore" );
             IWidgetStore store = WidgetStore.Current;
             if( widget.Id != 0 || store.ContainsKey( widget.Id ) )
             {

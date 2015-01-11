@@ -75,8 +75,9 @@
     <Compile Include="LocatorRegistry.cs" />
     <Compile Include="LocatorType.cs" />
     <Compile Include="New.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="Dyno.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
     <Compile Include="~AssemblyNotes.cs" />
     <Compile Include="~AssemblyTasks.cs" />
   </ItemGroup>

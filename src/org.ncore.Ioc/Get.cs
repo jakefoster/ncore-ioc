@@ -10,11 +10,6 @@ namespace org.ncore.Ioc
 {
     public static class Get
     {
-        public static dynamic Instance( Type type, bool allowCreate = false )
-        {
-            return Instance( type.FullName, allowCreate );
-        }
-
         public static dynamic Instance( string name, bool allowCreate = false )
         {
             dynamic instance = _getInstance( name, allowCreate );
@@ -43,17 +38,13 @@ namespace org.ncore.Ioc
             {
                 throw new ApplicationException( "The specified entry in the KernalRegistry does not exist." );
             }
+            else if( allowCreate )
+            {
+                instance = New.Instance( name, null, true );
+            }
             else
             {
-                if( !allowCreate || !Locator.Registry[ name ].AllowSave )
-                {
-                    throw new ApplicationException( "The specified entry in the KernalRegistry does not does not allow a saved instance or does not have one." );
-                }
-                else
-                {
-                    instance = New.Instance( name, null );
-                    Locator.Registry[ name ].Instance = instance;
-                }
+                throw new ApplicationException( "The specified entry in the KernalRegistry does not does not allow a saved instance or does not have one." );
             }
             return instance;
         }

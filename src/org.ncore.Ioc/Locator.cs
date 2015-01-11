@@ -43,9 +43,9 @@ namespace org.ncore.Ioc
                     Name = original.Name,
                     Assembly = original.Assembly,
                     TypeName = original.TypeName,
-                    AllowSave = original.AllowSave,
-                    Instance = instance
+                    AllowSave = original.AllowSave
                 };
+                replacement.SaveInstance( instance );
                 Registry.Update( original, replacement );
             }
         }

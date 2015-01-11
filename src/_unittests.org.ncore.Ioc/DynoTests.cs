@@ -13,9 +13,9 @@ namespace _unittests.org.ncore.Ioc
     /// Summary description for ServiceTests
     /// </summary>
     [TestClass]
-    public class ServiceTests
+    public class DynoTests
     {
-        public ServiceTests()
+        public DynoTests()
         {
             //
             // TODO: Add constructor logic here
@@ -63,20 +63,47 @@ namespace _unittests.org.ncore.Ioc
         #endregion
 
         [TestMethod]
-        public void New_from_name_works()
+        public void Static_New_from_name_works()
         {
             // REGISTER OUR TYPE
             Locator.Registry.Clear();
             Locator.Add( new LocatorType( "MyService", typeof( MockSampleClassC ) ) );
 
-            dynamic myService = new Service( "MyService" );
+            string greeting = Dyno.New( "MyService" ).Greet( "Hello" );
+
+            // I think this is beautiful, and the signatures are still available to you, just type:
+            //  TaskList. and get intellisense!
+
+            Assert.AreEqual( "Hello, I am a MockSampleClassC", greeting );
+        }
+
+        [TestMethod]
+        public void Static_New_from_type_mapped_in_registry_works()
+        {
+            // REGISTER OUR TYPE
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( typeof( SampleClassC ), typeof( MockSampleClassC ) ) );
+
+            string greeting = Dyno.New<SampleClassC>().Greet( "Hello" );
+
+            Assert.AreEqual( "Hello, I am a MockSampleClassC", greeting );
+        }
+
+        [TestMethod]
+        public void New_works()
+        {
+            // REGISTER OUR TYPE
+            Locator.Registry.Clear();
+            Locator.Add( new LocatorType( "MyService", typeof( MockSampleClassC ) ) );
+
+            dynamic myService = new Dyno( "MyService" );
             string greeting = myService.Greet( "Hello" );
 
             // I think this is beautiful, and the signatures are still available to you, just type:
             //  TaskList. and get intellisense!
 
             // TERSE: (I don't really like this syntax)
-            //string greeting = ( (dynamic)Service.New( "MyService" ) ).Greet( "Hello" );
+            //string greeting = ( (dynamic)Dyno.New( "MyService" ) ).Greet( "Hello" );
 
             Assert.AreEqual( "Hello, I am a MockSampleClassC", greeting );
         }
@@ -88,7 +115,7 @@ namespace _unittests.org.ncore.Ioc
             // REGISTER OUR TYPE
             Locator.Registry.Clear();
 
-            dynamic myService = new Service( "MyService" );
+            dynamic myService = new Dyno( "MyService" );
         }
 
         [TestMethod]
@@ -99,7 +126,7 @@ namespace _unittests.org.ncore.Ioc
             Locator.Add( new LocatorType( typeof( SampleClassC ), typeof( MockSampleClassC ) ) );
 
             // HMM. Something is confusing here. Are we trying to fully use the kernel registry or not?
-            dynamic myService = new Service( typeof( SampleClassC ) );
+            dynamic myService = new Dyno( typeof( SampleClassC ) );
             string greeting = myService.Greet( "Hello" );
 
             Assert.AreEqual( "Hello, I am a MockSampleClassC", greeting );
@@ -112,7 +139,7 @@ namespace _unittests.org.ncore.Ioc
             Locator.Registry.Clear();
 
             // ACT
-            dynamic myService = new Service( typeof( SampleClassC ) );
+            dynamic myService = new Dyno( typeof( SampleClassC ) );
             string greeting = myService.Greet( "Hello" );
 
             // ASSERT

@@ -117,7 +117,7 @@ namespace _unittests.org.ncore.Ioc
             //  is a compile-time activity and doing it dynamically at runtime would
             //  require some kind of abstraction layer.  This is where IoC comes in.
 
-            //  Here's the same code (functionaly) with the NCore Service shim used
+            //  Here's the same code (functionaly) with the NCore Dyno shim used
             //  to produce a dyamic wrapper class for the underlying service, effectively
             //  de-coupling it from the concrete type.  And yes, this is a bit of a 
             //  trick and results in an abscence of compile-time checking because of the
@@ -125,7 +125,7 @@ namespace _unittests.org.ncore.Ioc
             //  but lots of excellent enterprise and web-scale code has been written
             //  without the benefit of strong typing and compile-time type linking
             //  of types (any interpretted framework, e.g. Rails, Node.js, etc.)
-            dynamic WidgetSvc = New.Service( "WidgetService" );
+            dynamic WidgetSvc = Dyno.New( "WidgetService" );
             Widget widget2 = WidgetSvc.CreateFromConcrete( new Widget()
             {
                 Name = "Nike FuelBand",

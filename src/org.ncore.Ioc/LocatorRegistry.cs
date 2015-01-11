@@ -57,7 +57,6 @@ namespace org.ncore.Ioc
                         Assembly = element.Assembly,
                         TypeName = element.TypeName,
                         AllowSave = element.AllowSave,
-                        Instance = null
                     };
 
                     if( entry.Name.Contains( '*' ) )
@@ -86,8 +85,7 @@ namespace org.ncore.Ioc
                             Name = wildcard.Name.Replace( "*", type.Name ),
                             Assembly = wildcard.Assembly,
                             TypeName = type.FullName,
-                            AllowSave = wildcard.AllowSave,
-                            Instance = null
+                            AllowSave = wildcard.AllowSave
                         };
                         this.Add( entry );
                     }

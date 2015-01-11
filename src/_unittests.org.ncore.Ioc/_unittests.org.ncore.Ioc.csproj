@@ -55,6 +55,7 @@
     <Compile Include="ISampleInterfaceA.cs" />
     <Compile Include="KernelTests.cs" />
     <Compile Include="LocatorTests.cs" />
+    <Compile Include="NewTests.cs" />
     <Compile Include="SampleApp\Interfaces\IWidget.cs" />
     <Compile Include="SampleApp\Interfaces\IWidgetList.cs" />
     <Compile Include="SampleApp\Interfaces\IWidgetService.cs" />
@@ -66,9 +67,10 @@
     <Compile Include="SampleClassA.cs" />
     <Compile Include="SampleClassB.cs" />
     <Compile Include="SampleClassC.cs" />
-    <Compile Include="ServiceTests.cs" />
+    <Compile Include="DynoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleAppTests.cs" />
+    <Compile Include="ServiceTest.cs" />
     <Compile Include="Worknotes.cs" />
   </ItemGroup>
   <ItemGroup>
