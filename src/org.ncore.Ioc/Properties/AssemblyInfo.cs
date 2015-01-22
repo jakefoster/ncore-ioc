@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle( "org.ncore.Ioc" )]
 [assembly: AssemblyDescription( "A simple Inversion of Control library for performing service location and dependency injection." )]
-[assembly: AssemblyConfiguration( "Release" )]
+[assembly: AssemblyConfiguration( "Debug" )]
 [assembly: AssemblyCompany( "Cleverbox Inc." )]
 [assembly: AssemblyProduct( "org.ncore.Ioc" )]
 [assembly: AssemblyCopyright( "Copyright © 2004-2014, Cleverbox Inc. - All rights reserved." )]
@@ -62,5 +62,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion( "1.0.0.78" )]
-[assembly: AssemblyFileVersion( "1.0.0.78" )]
+[assembly: AssemblyVersion( "1.0.0.79" )]
+[assembly: AssemblyFileVersion( "1.0.0.79" )]
