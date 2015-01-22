@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle( "org.ncore.Ioc" )]
 [assembly: AssemblyDescription( "A simple Inversion of Control library for performing service location and dependency injection." )]
-[assembly: AssemblyConfiguration( "Debug" )]
+[assembly: AssemblyConfiguration( "Release" )]
 [assembly: AssemblyCompany( "Cleverbox Inc." )]
 [assembly: AssemblyProduct( "org.ncore.Ioc" )]
 [assembly: AssemblyCopyright( "Copyright © 2004-2014, Cleverbox Inc. - All rights reserved." )]

@@ -49,23 +49,26 @@ namespace org.ncore.Ioc
             lock( this )
             {
                 LocatorConfiguration configuration = (LocatorConfiguration)ConfigurationManager.GetSection( "locator" );
-                foreach( TypeElement element in configuration.Types )
+                if(configuration != null)
                 {
-                    LocatorType entry = new LocatorType()
+                    foreach( TypeElement element in configuration.Types )
                     {
-                        Name = element.Name,
-                        Assembly = element.Assembly,
-                        TypeName = element.TypeName,
-                        AllowSave = element.AllowSave,
-                    };
+                        LocatorType entry = new LocatorType()
+                        {
+                            Name = element.Name,
+                            Assembly = element.Assembly,
+                            TypeName = element.TypeName,
+                            AllowSave = element.AllowSave,
+                        };
 
-                    if( entry.Name.Contains( '*' ) )
-                    {
-                        _expandWildcard( entry );
-                    }
-                    else
-                    {
-                        this.Add( entry );
+                        if( entry.Name.Contains( '*' ) )
+                        {
+                            _expandWildcard( entry );
+                        }
+                        else
+                        {
+                            this.Add( entry );
+                        }
                     }
                 }
             }
